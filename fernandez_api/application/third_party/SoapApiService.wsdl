@@ -1,0 +1,1761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://soap.amaretto.globe.com" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ax21="http://soap.amaretto.globe.com/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://soap.amaretto.globe.com">
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://soap.amaretto.globe.com/xsd">
+            <xs:complexType name="BalanceInquiryServiceResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="balance" type="xs:float"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="StockTransferResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="transID" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="StockTransferForResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="transID" type="xs:long"/>
+                    <xs:element minOccurs="0" name="balance" type="xs:float"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TransactionInquiryByIdResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="statuses" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="targets" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TransactionInquiryByTargetResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int" />
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int" />
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="targetTrans" nillable="true" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TransactionInquiryResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="statuses" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="targets" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="transType" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TopupServiceResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="transID" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SetMPINOnOffResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SetAgentStatusResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RollbackWalletEarmarkResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="transID" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RollbackLoyaltyEarmarkResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="transID" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RetailerTransferResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="transID" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ChangeMPINResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ResetMPINResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>			
+            <xs:complexType name="RegisterAgentResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LoginResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="GetAgentProfileResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="barangay" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="city" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="contactNumber" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="email" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="middleName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="parentMSISDN" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="province" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="region" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="street" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tradeName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tradeRole" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="status" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="EarmarkWalletResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="transID" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="EarmarkLoyaltyResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="transID" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CreditWalletResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="transID" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CreditLoyaltyResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="transID" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CreateSessionResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CommitWalletEarmarkResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="transID" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CommitLoyaltyEarmarkResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="transID" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ChangeAgentProfileResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AuthenticateRetailerResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="authCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+			<xs:complexType name="RedeemLoyaltyResponse">
+            	<xs:sequence>
+                    <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="sessionResultCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="transID" type="xs:long"/>
+           		</xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax22="http://soap.amaretto.globe.com/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://soap.amaretto.globe.com">
+            <xs:import namespace="http://soap.amaretto.globe.com/xsd"/>
+            <xs:element name="walletBalanceQuery">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="wallet" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="walletBalanceQueryResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:BalanceInquiryServiceResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="transfer">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+						            <xs:element minOccurs="0" name="extTransID" nillable="true" type="xs:int"/>
+                        <xs:element minOccurs="0" name="target" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="wallet" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="amount" nillable="true" type="xs:decimal"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="transferResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StockTransferResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="transferFor">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="extTransId" type="xs:long"/>
+                        <xs:element minOccurs="0" name="source" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="mpin" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="target" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="wallet" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="amount" nillable="true" type="xs:decimal"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="transferForResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:StockTransferForResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="transQueryByID">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="extTransID" nillable="true" type="xs:int"/>
+                        <xs:element minOccurs="0" name="transID" type="xs:long"/>
+                        <xs:element minOccurs="0" name="transDate" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="transQueryByIDResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:TransactionInquiryByIdResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="transQuery">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="fromDate" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="toDate" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="transQueryResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:TransactionInquiryResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="transQueryByTarget">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string" />
+                        <xs:element minOccurs="0" name="fromDate" nillable="true" type="xs:string" />
+                        <xs:element minOccurs="0" name="toDate" nillable="true" type="xs:string" />
+                        <xs:element minOccurs="0" name="target" nillable="true" type="xs:string" />
+                        <xs:element minOccurs="0" name="extTransID" type="xs:long" />
+                        <xs:element minOccurs="0" name="transID" type="xs:long" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="transQueryByTargetResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:TransactionInquiryByTargetResponse" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="topupWithoutDebit">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="extTransID" nillable="true" type="xs:int"/>
+						<xs:element minOccurs="0" name="target" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="product" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="amount" nillable="true" type="xs:decimal"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="topupWithoutDebitResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:TopupServiceResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="topup">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="extTransID" nillable="true" type="xs:int"/>
+                        <xs:element minOccurs="0" name="target" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="product" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="amount" nillable="true" type="xs:decimal"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="topupResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:TopupServiceResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="setMPINOnOff">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="MSISDN" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="on" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="setMPINOnOffResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:SetMPINOnOffResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="setAgentStatus">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="MSISDN" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="status" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="setAgentStatusResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:SetAgentStatusResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="rollbackWalletEarmark">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="extTransID" type="xs:long"/>
+                        <xs:element minOccurs="0" name="target" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="earmarkTransID" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="rollbackWalletEarmarkResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:RollbackWalletEarmarkResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="rollbackLoyaltyEarmark">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="extTransID" type="xs:long"/>
+                        <xs:element minOccurs="0" name="target" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="earmarkTransID" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="rollbackLoyaltyEarmarkResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:RollbackLoyaltyEarmarkResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="retailerTransfer">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="extTransID" type="xs:long"/>
+                        <xs:element minOccurs="0" name="target" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="amount" nillable="true" type="xs:decimal"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="retailerTransferResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:RetailerTransferResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="resetMPIN">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="MSISDN" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="resetMPINResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:ResetMPINResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="registerAgent">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="MSISDN" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="tradeRole" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="tradeName" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="middleName" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="parentMSISDN" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="contactNumber" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="city" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="barangay" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="street" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="registerAgentResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:RegisterAgentResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="login">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="user" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="loginResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:LoginResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAgentProfile">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="MSISDN" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAgentProfileResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:GetAgentProfileResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="earmarkWallet">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="extTransID" type="xs:long"/>
+                        <xs:element minOccurs="0" name="target" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="wallet" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="amount" nillable="true" type="xs:decimal"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="earmarkWalletResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:EarmarkWalletResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="earmarkLoyalty">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="extTransID" type="xs:long"/>
+                        <xs:element minOccurs="0" name="target" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="amount" nillable="true" type="xs:decimal"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="earmarkLoyaltyResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:EarmarkLoyaltyResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="creditWallet">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="extTransID" type="xs:long"/>
+                        <xs:element minOccurs="0" name="target" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="wallet" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="amount" nillable="true" type="xs:decimal"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="creditWalletResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:CreditWalletResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="creditLoyalty">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="extTransID" type="xs:long"/>
+                        <xs:element minOccurs="0" name="target" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="expiryInMonth" type="xs:int"/>
+                        <xs:element minOccurs="0" name="amount" nillable="true" type="xs:decimal"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="creditLoyaltyResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:CreditLoyaltyResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createSessionResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:CreateSessionResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="commitWalletEarmark">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="extTransID" type="xs:long"/>
+                        <xs:element minOccurs="0" name="target" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="earmarkTransID" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+			<xs:element name="createSession">
+                <xs:complexType>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="commitWalletEarmarkResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:CommitWalletEarmarkResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="commitLoyaltyEarmark">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="extTransID" type="xs:long"/>
+                        <xs:element minOccurs="0" name="target" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="earmarkTransID" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="commitLoyaltyEarmarkResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:CommitLoyaltyEarmarkResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="changeMPIN">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="mpin" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="changeMPINResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:ChangeMPINResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="changeAgentProfile">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="MSISDN" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="middleName" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="contactNumber" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="city" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="barangay" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="street" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="changeAgentProfileResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:ChangeAgentProfileResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="authenticateRetailer">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="MSISDN" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="authenticateRetailerResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:AuthenticateRetailerResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="redeemLoyalty">
+            	<xs:complexType>
+            		<xs:sequence>
+						<xs:element minOccurs="0" name="session" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="extTransID" type="xs:long"/>
+                        <xs:element minOccurs="0" name="target" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="keyword" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="amount" nillable="true" type="xs:decimal"/>                        
+            		</xs:sequence>
+            	</xs:complexType>
+            </xs:element>
+            <xs:element name="redeemLoyaltyResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:RedeemLoyaltyResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="creditLoyaltyRequest">
+        <wsdl:part name="parameters" element="ns:creditLoyalty"/>
+    </wsdl:message>
+    <wsdl:message name="creditLoyaltyResponse">
+        <wsdl:part name="parameters" element="ns:creditLoyaltyResponse"/>
+    </wsdl:message>
+    <wsdl:message name="authenticateRetailerRequest">
+        <wsdl:part name="parameters" element="ns:authenticateRetailer"/>
+    </wsdl:message>
+    <wsdl:message name="authenticateRetailerResponse">
+        <wsdl:part name="parameters" element="ns:authenticateRetailerResponse"/>
+    </wsdl:message>
+    <wsdl:message name="changeAgentProfileRequest">
+        <wsdl:part name="parameters" element="ns:changeAgentProfile"/>
+    </wsdl:message>
+    <wsdl:message name="changeAgentProfileResponse">
+        <wsdl:part name="parameters" element="ns:changeAgentProfileResponse"/>
+    </wsdl:message>
+    <wsdl:message name="changeMPINRequest">
+        <wsdl:part name="parameters" element="ns:changeMPIN"/>
+    </wsdl:message>
+    <wsdl:message name="changeMPINResponse">
+        <wsdl:part name="parameters" element="ns:changeMPINResponse"/>
+    </wsdl:message>
+    <wsdl:message name="registerAgentRequest">
+        <wsdl:part name="parameters" element="ns:registerAgent"/>
+    </wsdl:message>
+    <wsdl:message name="registerAgentResponse">
+        <wsdl:part name="parameters" element="ns:registerAgentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="earmarkLoyaltyRequest">
+        <wsdl:part name="parameters" element="ns:earmarkLoyalty"/>
+    </wsdl:message>
+    <wsdl:message name="earmarkLoyaltyResponse">
+        <wsdl:part name="parameters" element="ns:earmarkLoyaltyResponse"/>
+    </wsdl:message>
+    <wsdl:message name="resetMPINRequest">
+        <wsdl:part name="parameters" element="ns:resetMPIN"/>
+    </wsdl:message>
+    <wsdl:message name="resetMPINResponse">
+        <wsdl:part name="parameters" element="ns:resetMPINResponse"/>
+    </wsdl:message>
+    <wsdl:message name="rollbackLoyaltyEarmarkRequest">
+        <wsdl:part name="parameters" element="ns:rollbackLoyaltyEarmark"/>
+    </wsdl:message>
+    <wsdl:message name="rollbackLoyaltyEarmarkResponse">
+        <wsdl:part name="parameters" element="ns:rollbackLoyaltyEarmarkResponse"/>
+    </wsdl:message>
+    <wsdl:message name="transferRequest">
+        <wsdl:part name="parameters" element="ns:transfer"/>
+    </wsdl:message>
+    <wsdl:message name="transferResponse">
+        <wsdl:part name="parameters" element="ns:transferResponse"/>
+    </wsdl:message>
+    <wsdl:message name="transferForRequest">
+        <wsdl:part name="parameters" element="ns:transferFor"/>
+    </wsdl:message>
+    <wsdl:message name="transferForResponse">
+        <wsdl:part name="parameters" element="ns:transferForResponse"/>
+    </wsdl:message>
+    <wsdl:message name="rollbackWalletEarmarkRequest">
+        <wsdl:part name="parameters" element="ns:rollbackWalletEarmark"/>
+    </wsdl:message>
+    <wsdl:message name="rollbackWalletEarmarkResponse">
+        <wsdl:part name="parameters" element="ns:rollbackWalletEarmarkResponse"/>
+    </wsdl:message>
+    <wsdl:message name="transQueryByIDRequest">
+        <wsdl:part name="parameters" element="ns:transQueryByID"/>
+    </wsdl:message>
+    <wsdl:message name="transQueryByIDResponse">
+        <wsdl:part name="parameters" element="ns:transQueryByIDResponse"/>
+    </wsdl:message>
+    <wsdl:message name="transQueryByTargetRequest">
+        <wsdl:part name="parameters" element="ns:transQueryByTarget"/>
+    </wsdl:message>
+    <wsdl:message name="transQueryByTargetResponse">
+        <wsdl:part name="parameters" element="ns:transQueryByTargetResponse"/>
+    </wsdl:message>
+    <wsdl:message name="commitWalletEarmarkRequest">
+        <wsdl:part name="parameters" element="ns:commitWalletEarmark"/>
+    </wsdl:message>
+    <wsdl:message name="commitWalletEarmarkResponse">
+        <wsdl:part name="parameters" element="ns:commitWalletEarmarkResponse"/>
+    </wsdl:message>
+    <wsdl:message name="createSessionRequest">
+	        <wsdl:part name="parameters" element="ns:createSession"/>
+    </wsdl:message>
+    <wsdl:message name="createSessionResponse">
+        <wsdl:part name="parameters" element="ns:createSessionResponse"/>
+    </wsdl:message>
+    <wsdl:message name="retailerTransferRequest">
+        <wsdl:part name="parameters" element="ns:retailerTransfer"/>
+    </wsdl:message>
+    <wsdl:message name="retailerTransferResponse">
+        <wsdl:part name="parameters" element="ns:retailerTransferResponse"/>
+    </wsdl:message>
+    <wsdl:message name="loginRequest">
+        <wsdl:part name="parameters" element="ns:login"/>
+    </wsdl:message>
+    <wsdl:message name="loginResponse">
+        <wsdl:part name="parameters" element="ns:loginResponse"/>
+    </wsdl:message>
+    <wsdl:message name="walletBalanceQueryRequest">
+        <wsdl:part name="parameters" element="ns:walletBalanceQuery"/>
+    </wsdl:message>
+    <wsdl:message name="walletBalanceQueryResponse">
+        <wsdl:part name="parameters" element="ns:walletBalanceQueryResponse"/>
+    </wsdl:message>
+    <wsdl:message name="earmarkWalletRequest">
+        <wsdl:part name="parameters" element="ns:earmarkWallet"/>
+    </wsdl:message>
+    <wsdl:message name="earmarkWalletResponse">
+        <wsdl:part name="parameters" element="ns:earmarkWalletResponse"/>
+    </wsdl:message>
+    <wsdl:message name="creditWalletRequest">
+        <wsdl:part name="parameters" element="ns:creditWallet"/>
+    </wsdl:message>
+    <wsdl:message name="creditWalletResponse">
+        <wsdl:part name="parameters" element="ns:creditWalletResponse"/>
+    </wsdl:message>
+    <wsdl:message name="transQueryRequest">
+        <wsdl:part name="parameters" element="ns:transQuery"/>
+    </wsdl:message>
+    <wsdl:message name="transQueryResponse">
+        <wsdl:part name="parameters" element="ns:transQueryResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getAgentProfileRequest">
+        <wsdl:part name="parameters" element="ns:getAgentProfile"/>
+    </wsdl:message>
+    <wsdl:message name="getAgentProfileResponse">
+        <wsdl:part name="parameters" element="ns:getAgentProfileResponse"/>
+    </wsdl:message>
+    <wsdl:message name="topupWithoutDebitRequest">
+        <wsdl:part name="parameters" element="ns:topupWithoutDebit"/>
+    </wsdl:message>
+    <wsdl:message name="topupWithoutDebitResponse">
+        <wsdl:part name="parameters" element="ns:topupWithoutDebitResponse"/>
+    </wsdl:message>
+    <wsdl:message name="setAgentStatusRequest">
+        <wsdl:part name="parameters" element="ns:setAgentStatus"/>
+    </wsdl:message>
+    <wsdl:message name="setAgentStatusResponse">
+        <wsdl:part name="parameters" element="ns:setAgentStatusResponse"/>
+    </wsdl:message>
+    <wsdl:message name="setMPINOnOffRequest">
+        <wsdl:part name="parameters" element="ns:setMPINOnOff"/>
+    </wsdl:message>
+    <wsdl:message name="setMPINOnOffResponse">
+        <wsdl:part name="parameters" element="ns:setMPINOnOffResponse"/>
+    </wsdl:message>
+    <wsdl:message name="commitLoyaltyEarmarkRequest">
+        <wsdl:part name="parameters" element="ns:commitLoyaltyEarmark"/>
+    </wsdl:message>
+    <wsdl:message name="commitLoyaltyEarmarkResponse">
+        <wsdl:part name="parameters" element="ns:commitLoyaltyEarmarkResponse"/>
+    </wsdl:message>
+    <wsdl:message name="topupRequest">
+        <wsdl:part name="parameters" element="ns:topup"/>
+    </wsdl:message>
+    <wsdl:message name="topupResponse">
+        <wsdl:part name="parameters" element="ns:topupResponse"/>
+    </wsdl:message>
+    <wsdl:message name="redeemLoyaltyRequest">
+    	<wsdl:part name="parameters" element="ns:redeemLoyalty"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="redeemLoyaltyResponse">
+    	<wsdl:part name="parameters" element="ns:redeemLoyaltyResponse"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="SoapApiServicePortType">
+        <wsdl:operation name="creditLoyalty">
+            <wsdl:input message="ns:creditLoyaltyRequest" wsaw:Action="urn:creditLoyalty"/>
+            <wsdl:output message="ns:creditLoyaltyResponse" wsaw:Action="urn:creditLoyaltyResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="authenticateRetailer">
+            <wsdl:input message="ns:authenticateRetailerRequest" wsaw:Action="urn:authenticateRetailer"/>
+            <wsdl:output message="ns:authenticateRetailerResponse" wsaw:Action="urn:authenticateRetailerResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="changeAgentProfile">
+            <wsdl:input message="ns:changeAgentProfileRequest" wsaw:Action="urn:changeAgentProfile"/>
+            <wsdl:output message="ns:changeAgentProfileResponse" wsaw:Action="urn:changeAgentProfileResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="changeMPIN">
+            <wsdl:input message="ns:changeMPINRequest" wsaw:Action="urn:changeMPIN"/>
+            <wsdl:output message="ns:changeMPINResponse" wsaw:Action="urn:changeMPINResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="registerAgent">
+            <wsdl:input message="ns:registerAgentRequest" wsaw:Action="urn:registerAgent"/>
+            <wsdl:output message="ns:registerAgentResponse" wsaw:Action="urn:registerAgentResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="earmarkLoyalty">
+            <wsdl:input message="ns:earmarkLoyaltyRequest" wsaw:Action="urn:earmarkLoyalty"/>
+            <wsdl:output message="ns:earmarkLoyaltyResponse" wsaw:Action="urn:earmarkLoyaltyResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="resetMPIN">
+            <wsdl:input message="ns:resetMPINRequest" wsaw:Action="urn:resetMPIN"/>
+            <wsdl:output message="ns:resetMPINResponse" wsaw:Action="urn:resetMPINResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="rollbackLoyaltyEarmark">
+            <wsdl:input message="ns:rollbackLoyaltyEarmarkRequest" wsaw:Action="urn:rollbackLoyaltyEarmark"/>
+            <wsdl:output message="ns:rollbackLoyaltyEarmarkResponse" wsaw:Action="urn:rollbackLoyaltyEarmarkResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="transfer">
+            <wsdl:input message="ns:transferRequest" wsaw:Action="urn:transfer"/>
+            <wsdl:output message="ns:transferResponse" wsaw:Action="urn:transferResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="transferFor">
+            <wsdl:input message="ns:transferForRequest" wsaw:Action="urn:transferFor"/>
+            <wsdl:output message="ns:transferForResponse" wsaw:Action="urn:transferForResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="rollbackWalletEarmark">
+            <wsdl:input message="ns:rollbackWalletEarmarkRequest" wsaw:Action="urn:rollbackWalletEarmark"/>
+            <wsdl:output message="ns:rollbackWalletEarmarkResponse" wsaw:Action="urn:rollbackWalletEarmarkResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="transQueryByID">
+            <wsdl:input message="ns:transQueryByIDRequest" wsaw:Action="urn:transQueryByID"/>
+            <wsdl:output message="ns:transQueryByIDResponse" wsaw:Action="urn:transQueryByIDResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="transQueryByTarget">
+        <wsdl:input message="ns:transQueryByTargetRequest" wsaw:Action="urn:transQueryByTarget"/>
+            <wsdl:output message="ns:transQueryByTargetResponse" wsaw:Action="urn:transQueryByTargetResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="commitWalletEarmark">
+            <wsdl:input message="ns:commitWalletEarmarkRequest" wsaw:Action="urn:commitWalletEarmark"/>
+            <wsdl:output message="ns:commitWalletEarmarkResponse" wsaw:Action="urn:commitWalletEarmarkResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="createSession">
+            <wsdl:input message="ns:createSessionRequest" wsaw:Action="urn:createSession"/>
+            <wsdl:output message="ns:createSessionResponse" wsaw:Action="urn:createSessionResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="retailerTransfer">
+            <wsdl:input message="ns:retailerTransferRequest" wsaw:Action="urn:retailerTransfer"/>
+            <wsdl:output message="ns:retailerTransferResponse" wsaw:Action="urn:retailerTransferResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="login">
+            <wsdl:input message="ns:loginRequest" wsaw:Action="urn:login"/>
+            <wsdl:output message="ns:loginResponse" wsaw:Action="urn:loginResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="walletBalanceQuery">
+            <wsdl:input message="ns:walletBalanceQueryRequest" wsaw:Action="urn:walletBalanceQuery"/>
+            <wsdl:output message="ns:walletBalanceQueryResponse" wsaw:Action="urn:walletBalanceQueryResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="earmarkWallet">
+            <wsdl:input message="ns:earmarkWalletRequest" wsaw:Action="urn:earmarkWallet"/>
+            <wsdl:output message="ns:earmarkWalletResponse" wsaw:Action="urn:earmarkWalletResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="creditWallet">
+            <wsdl:input message="ns:creditWalletRequest" wsaw:Action="urn:creditWallet"/>
+            <wsdl:output message="ns:creditWalletResponse" wsaw:Action="urn:creditWalletResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="transQuery">
+            <wsdl:input message="ns:transQueryRequest" wsaw:Action="urn:transQuery"/>
+            <wsdl:output message="ns:transQueryResponse" wsaw:Action="urn:transQueryResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAgentProfile">
+            <wsdl:input message="ns:getAgentProfileRequest" wsaw:Action="urn:getAgentProfile"/>
+            <wsdl:output message="ns:getAgentProfileResponse" wsaw:Action="urn:getAgentProfileResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="topupWithoutDebit">
+            <wsdl:input message="ns:topupWithoutDebitRequest" wsaw:Action="urn:topupWithoutDebit"/>
+            <wsdl:output message="ns:topupWithoutDebitResponse" wsaw:Action="urn:topupWithoutDebitResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="setAgentStatus">
+            <wsdl:input message="ns:setAgentStatusRequest" wsaw:Action="urn:setAgentStatus"/>
+            <wsdl:output message="ns:setAgentStatusResponse" wsaw:Action="urn:setAgentStatusResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="setMPINOnOff">
+            <wsdl:input message="ns:setMPINOnOffRequest" wsaw:Action="urn:setMPINOnOff"/>
+            <wsdl:output message="ns:setMPINOnOffResponse" wsaw:Action="urn:setMPINOnOffResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="commitLoyaltyEarmark">
+            <wsdl:input message="ns:commitLoyaltyEarmarkRequest" wsaw:Action="urn:commitLoyaltyEarmark"/>
+            <wsdl:output message="ns:commitLoyaltyEarmarkResponse" wsaw:Action="urn:commitLoyaltyEarmarkResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="topup">
+            <wsdl:input message="ns:topupRequest" wsaw:Action="urn:topup"/>
+            <wsdl:output message="ns:topupResponse" wsaw:Action="urn:topupResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="redeemLoyalty">
+        	<wsdl:input message="ns:redeemLoyaltyRequest" wsaw:Action="urn:redeemLoyalty"></wsdl:input>
+        	<wsdl:output message="ns:redeemLoyaltyResponse" wsaw:Action="urn:redeemLoyaltyResponse"></wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SoapApiServiceSoap11Binding" type="ns:SoapApiServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="creditLoyalty">
+            <soap:operation soapAction="urn:creditLoyalty" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="authenticateRetailer">
+            <soap:operation soapAction="urn:authenticateRetailer" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="changeAgentProfile">
+            <soap:operation soapAction="urn:changeAgentProfile" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="changeMPIN">
+            <soap:operation soapAction="urn:changeMPIN" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="registerAgent">
+            <soap:operation soapAction="urn:registerAgent" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transfer">
+            <soap:operation soapAction="urn:transfer" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transferFor">
+            <soap:operation soapAction="urn:transferFor" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="earmarkLoyalty">
+            <soap:operation soapAction="urn:earmarkLoyalty" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="resetMPIN">
+            <soap:operation soapAction="urn:resetMPIN" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="rollbackLoyaltyEarmark">
+            <soap:operation soapAction="urn:rollbackLoyaltyEarmark" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="rollbackWalletEarmark">
+            <soap:operation soapAction="urn:rollbackWalletEarmark" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transQueryByID">
+            <soap:operation soapAction="urn:transQueryByID" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transQueryByTarget">
+            <soap:operation soapAction="urn:transQueryByTarget" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="commitWalletEarmark">
+            <soap:operation soapAction="urn:commitWalletEarmark" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createSession">
+            <soap:operation soapAction="urn:createSession" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="retailerTransfer">
+            <soap:operation soapAction="urn:retailerTransfer" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="walletBalanceQuery">
+            <soap:operation soapAction="urn:walletBalanceQuery" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="login">
+            <soap:operation soapAction="urn:login" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="creditWallet">
+            <soap:operation soapAction="urn:creditWallet" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="earmarkWallet">
+            <soap:operation soapAction="urn:earmarkWallet" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transQuery">
+            <soap:operation soapAction="urn:transQuery" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="topupWithoutDebit">
+            <soap:operation soapAction="urn:topupWithoutDebit" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAgentProfile">
+            <soap:operation soapAction="urn:getAgentProfile" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setAgentStatus">
+            <soap:operation soapAction="urn:setAgentStatus" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setMPINOnOff">
+            <soap:operation soapAction="urn:setMPINOnOff" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="topup">
+            <soap:operation soapAction="urn:topup" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="commitLoyaltyEarmark">
+            <soap:operation soapAction="urn:commitLoyaltyEarmark" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+		<wsdl:operation name="redeemLoyalty">
+            <soap:operation soapAction="urn:redeemLoyalty" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="SoapApiServiceSoap12Binding" type="ns:SoapApiServicePortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="creditLoyalty">
+            <soap12:operation soapAction="urn:creditLoyalty" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="authenticateRetailer">
+            <soap12:operation soapAction="urn:authenticateRetailer" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="changeAgentProfile">
+            <soap12:operation soapAction="urn:changeAgentProfile" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="changeMPIN">
+            <soap12:operation soapAction="urn:changeMPIN" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="registerAgent">
+            <soap12:operation soapAction="urn:registerAgent" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transfer">
+            <soap12:operation soapAction="urn:transfer" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transferFor">
+            <soap12:operation soapAction="urn:transferFor" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="earmarkLoyalty">
+            <soap12:operation soapAction="urn:earmarkLoyalty" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="resetMPIN">
+            <soap12:operation soapAction="urn:resetMPIN" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="rollbackLoyaltyEarmark">
+            <soap12:operation soapAction="urn:rollbackLoyaltyEarmark" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="rollbackWalletEarmark">
+            <soap12:operation soapAction="urn:rollbackWalletEarmark" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transQueryByID">
+            <soap12:operation soapAction="urn:transQueryByID" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transQueryByTarget">
+            <soap12:operation soapAction="urn:transQueryByTarget" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="commitWalletEarmark">
+            <soap12:operation soapAction="urn:commitWalletEarmark" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createSession">
+            <soap12:operation soapAction="urn:createSession" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="retailerTransfer">
+            <soap12:operation soapAction="urn:retailerTransfer" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="walletBalanceQuery">
+            <soap12:operation soapAction="urn:walletBalanceQuery" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="login">
+            <soap12:operation soapAction="urn:login" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="creditWallet">
+            <soap12:operation soapAction="urn:creditWallet" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="earmarkWallet">
+            <soap12:operation soapAction="urn:earmarkWallet" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transQuery">
+            <soap12:operation soapAction="urn:transQuery" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="topupWithoutDebit">
+            <soap12:operation soapAction="urn:topupWithoutDebit" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAgentProfile">
+            <soap12:operation soapAction="urn:getAgentProfile" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setAgentStatus">
+            <soap12:operation soapAction="urn:setAgentStatus" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setMPINOnOff">
+            <soap12:operation soapAction="urn:setMPINOnOff" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="topup">
+            <soap12:operation soapAction="urn:topup" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="commitLoyaltyEarmark">
+            <soap12:operation soapAction="urn:commitLoyaltyEarmark" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+		<wsdl:operation name="redeemLoyalty">
+            <soap12:operation soapAction="urn:redeemLoyalty" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="SoapApiServiceHttpBinding" type="ns:SoapApiServicePortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="creditLoyalty">
+            <http:operation location="SoapApiService/creditLoyalty"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="creditLoyalty"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="creditLoyalty"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="authenticateRetailer">
+            <http:operation location="SoapApiService/authenticateRetailer"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="authenticateRetailer"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="authenticateRetailer"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="changeAgentProfile">
+            <http:operation location="SoapApiService/changeAgentProfile"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="changeAgentProfile"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="changeAgentProfile"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="changeMPIN">
+            <http:operation location="SoapApiService/changeMPIN"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="changeMPIN"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="changeMPIN"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="registerAgent">
+            <http:operation location="SoapApiService/registerAgent"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="registerAgent"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="registerAgent"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transfer">
+            <http:operation location="SoapApiService/transfer"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="transfer"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="transfer"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transferFor">
+            <http:operation location="SoapApiService/transferFor"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="transferFor"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="transferFor"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="earmarkLoyalty">
+            <http:operation location="SoapApiService/earmarkLoyalty"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="earmarkLoyalty"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="earmarkLoyalty"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="resetMPIN">
+            <http:operation location="SoapApiService/resetMPIN"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="resetMPIN"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="resetMPIN"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="rollbackLoyaltyEarmark">
+            <http:operation location="SoapApiService/rollbackLoyaltyEarmark"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="rollbackLoyaltyEarmark"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="rollbackLoyaltyEarmark"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="rollbackWalletEarmark">
+            <http:operation location="SoapApiService/rollbackWalletEarmark"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="rollbackWalletEarmark"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="rollbackWalletEarmark"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transQueryByID">
+            <http:operation location="SoapApiService/transQueryByID"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="transQueryByID"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="transQueryByID"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transQueryByTarget">
+            <http:operation location="SoapApiService/transQueryByTarget"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="transQueryByTarget"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="transQueryByTarget"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="commitWalletEarmark">
+            <http:operation location="SoapApiService/commitWalletEarmark"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="commitWalletEarmark"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="commitWalletEarmark"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createSession">
+            <http:operation location="SoapApiService/createSession"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="createSession"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="createSession"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="retailerTransfer">
+            <http:operation location="SoapApiService/retailerTransfer"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="retailerTransfer"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="retailerTransfer"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="walletBalanceQuery">
+            <http:operation location="SoapApiService/walletBalanceQuery"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="walletBalanceQuery"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="walletBalanceQuery"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="login">
+            <http:operation location="SoapApiService/login"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="login"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="login"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="creditWallet">
+            <http:operation location="SoapApiService/creditWallet"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="creditWallet"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="creditWallet"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="earmarkWallet">
+            <http:operation location="SoapApiService/earmarkWallet"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="earmarkWallet"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="earmarkWallet"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transQuery">
+            <http:operation location="SoapApiService/transQuery"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="transQuery"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="transQuery"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="topupWithoutDebit">
+            <http:operation location="SoapApiService/topupWithoutDebit"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="topupWithoutDebit"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="topupWithoutDebit"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAgentProfile">
+            <http:operation location="SoapApiService/getAgentProfile"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getAgentProfile"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getAgentProfile"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setAgentStatus">
+            <http:operation location="SoapApiService/setAgentStatus"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="setAgentStatus"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="setAgentStatus"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setMPINOnOff">
+            <http:operation location="SoapApiService/setMPINOnOff"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="setMPINOnOff"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="setMPINOnOff"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="topup">
+            <http:operation location="SoapApiService/topup"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="topup"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="topup"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="commitLoyaltyEarmark">
+            <http:operation location="SoapApiService/commitLoyaltyEarmark"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="commitLoyaltyEarmark"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="commitLoyaltyEarmark"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="redeemLoyalty">
+            <http:operation location="SoapApiService/redeemLoyalty"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="redeemLoyalty"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="redeemLoyalty"/>
+            </wsdl:output>
+        </wsdl:operation>		
+    </wsdl:binding>
+    <wsdl:service name="SoapApiService">
+        <wsdl:port name="SoapApiServiceHttpSoap11Endpoint" binding="ns:SoapApiServiceSoap11Binding">
+            <soap:address location="https://autoloadmaxweb.globe.com.ph/http/AmarettoAmax/SOAPAPIR2HTTPSrvr"/>
+        </wsdl:port>
+        <wsdl:port name="SoapApiServiceHttpSoap12Endpoint" binding="ns:SoapApiServiceSoap12Binding">
+            <soap12:address location="https://autoloadmaxweb.globe.com.ph/http/AmarettoAmax/SOAPAPIR2HTTPSrvr"/>
+        </wsdl:port>
+        <wsdl:port name="SoapApiServiceHttpEndpoint" binding="ns:SoapApiServiceHttpBinding">
+            <http:address location="https://autoloadmaxweb.globe.com.ph/http/AmarettoAmax/SOAPAPIR2HTTPSrvr"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

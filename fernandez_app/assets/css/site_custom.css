@@ -1,0 +1,33 @@
+body.bg-slate-800 {
+    color: #333 !important;
+}
+#hid_params{
+	opacity:0;
+	filter:alpha(opacity=0);
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+.footer{
+	width: 100%;
+}
+.sys-hide{
+	display: none !important;
+}
+.sys_margin_10px{
+	margin-top: 25px;
+}
+.qr_img,.qr_img > img{
+	margin: 0 auto !important;
+	width: 150px;
+	height: 150px;
+}
+.navbar-brand >  h3{
+	margin-top: 0px !important;
+	
+}
+.easy-autocomplete{
+	width: 100% !important;
+}

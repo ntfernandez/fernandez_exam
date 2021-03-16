@@ -1,0 +1,10 @@
+
+ 
+1. INSTALL WAMP 3.1.7
+2. PULL REPOSITORY TO FOLDER NAMED
+	- fernandez_app // WEB APP
+	- fernandez_api // API 
+3. Go to browser and type http://localhost/phpmyadmin/
+	for database restoring.
+4. Name database fernandez_db
+5. All set to go.
